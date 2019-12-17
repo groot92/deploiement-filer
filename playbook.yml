@@ -1,0 +1,48 @@
+---
+
+- name: installatalion du filer   
+  hosts: FILER
+  remote_user: root
+  vars:
+    user: automate
+
+
+  tasks:
+    
+    - name: creation d'un utlisateur
+      when: user is defined
+      user: name={{ user }} comment="Creation de l'user local" shell=/usr/bin/
+    
+    - name: ajout de la cle ssh
+      when: user is defined
+      authorized_key: user={{ user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    - name: l'utilisateur devient sudo
+      when: user is defined
+      template: src=templates/sudoers.j2 dest=/etc/sudoers.d/{{ user }}-sudoer validate='visudo -cf %s'
+
+
+  roles:
+    - role: centosinst
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Entreprise Linux'
+    - role: debianinst
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - role: services
+
+
+  tasks:
+    - name: copie de smb.conf
+      copy:
+       src: /etc/ansible/roles/debianinst/files/smb.conf
+       dest: /etc/samba/
+       owner: root
+       group: root
+       mode: 0644
+
+    - name: creation des repertoires filer
+      file:
+       path: /partage/commun
+       state: directory
+       owner: root
+       group: users
+       mode: '0777'
