@@ -1,0 +1,10 @@
+---
+- name: installation des packages pour debian
+  apt:
+    update_cache: yes
+    pkg:
+      - samba
+      - samba-common
+      - smbclient
+      - smbnetfs
+    state: present

@@ -1,0 +1,19 @@
+---
+- name: installation des packages pour centos
+  yum:
+    update_cache: yes
+    pkg:
+      - samba
+      - samba-common
+      - samba-client
+    state: present
+
+- name: ajout reglle FW
+  command: firewall-cmd --permanent --zone=public --add-service=samba
+
+- name: reboot FW
+  command: firewall-cmd --reload
+
+- name: disable SELinux
+  selinux:
+    state: disabled

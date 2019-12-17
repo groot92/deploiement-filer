@@ -1,0 +1,19 @@
+---
+- name: reboot service samba pour centOS
+  systemd:
+     name: "{{ item }}"
+     enabled: yes
+     state: restarted
+     daemon_reload: yes
+  with_items:
+     - smb
+     - nmb
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Entreprise Linux'
+
+
+
+- name: reboot service pour Debian
+  service:
+    name: smbd
+    state: restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
