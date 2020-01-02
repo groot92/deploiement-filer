@@ -11,3 +11,4 @@ Playbooks Ansible
 - playbook deploiement des serveurs en workgroup
 - playbook configuration de l'ajout a un serveur AD
 
+# VARIABLES
