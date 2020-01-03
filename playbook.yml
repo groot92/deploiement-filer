@@ -1,4 +1,8 @@
 ---
+- name: pre-install
+  hosts: 127.0.0.1
+  tasks:
+    -  local_action: command python3 /etc/ansible/files/pub_key.py
 
 - name: installatalion du filer   
   hosts: FILER
