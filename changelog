@@ -1,2 +1,3 @@
 03/01/2020
 Creation d'un script post deploiement pour la publickey
+prise en charge des exeptions: serveur offline, pb d'autentification
