@@ -3,6 +3,7 @@
   hosts: 127.0.0.1
   tasks:
     -  local_action: command python3 /etc/ansible/files/pub_key.py
+   
 
 - name: installatalion du filer   
   hosts: FILER
@@ -10,20 +11,6 @@
   vars:
     user: automate
 
-
-  tasks:
-    
-    - name: creation d'un utlisateur
-      when: user is defined
-      user: name={{ user }} comment="Creation de l'user local" shell=/usr/bin/
-    
-    - name: ajout de la cle ssh
-      when: user is defined
-      authorized_key: user={{ user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-
-    - name: l'utilisateur devient sudo
-      when: user is defined
-      template: src=templates/sudoers.j2 dest=/etc/sudoers.d/{{ user }}-sudoer validate='visudo -cf %s'
 
 
   roles:
@@ -50,3 +37,16 @@
        owner: root
        group: users
        mode: '0777'
+
+
+    - name: creation d'un utilisateur
+      when: user is defined
+      user: name={{ user }} comment="Creation de l'user local" shell=/usr/bin/
+
+    - name: ajout de la cle ssh
+      when: user is defined
+      authorized_key: user={{ user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    - name: l'utilisateur devient sudo
+      when: user is defined
+      template: src=/etc/ansible/templates/sudoers.j2 dest=/etc/sudoers validate='visudo -cf %s'
