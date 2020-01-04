@@ -1,3 +1,6 @@
-03/01/2020
+**03/01/2020**
 Creation d'un script post deploiement pour la publickey
 prise en charge des exeptions: serveur offline, pb d'autentification
+
+**04/01/2020**
+modification du playbook, pour la prise en compte du create user
