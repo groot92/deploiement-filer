@@ -1,0 +1,58 @@
+---
+- name: preparation pour debian
+  apt:
+    update_cache: yes
+    pkg:
+      - resolvconf
+      - krb5-user
+      - libnss-winbind
+      - libpam-winbind
+      - python-pexpect
+      - python-dev
+      - python-pip
+      - python3-pip
+      - libsasl2-dev
+      - libldap2-dev
+      - libssl-dev
+      - winbind
+    state: present
+    
+- name: installation de ldap3    
+  pip:
+    name: ldap3
+
+- name: copie du smb.conf
+  copy:
+   src: /etc/ansible/roles/debianad/files/smb.conf
+   dest: /etc/samba/
+   owner: root
+   group: root
+   mode: 0644
+
+
+- name: copie du hostname
+  copy:
+   src: /etc/ansible/roles/debianad/files/hostname
+   dest: /etc/
+   owner: root
+   group: root
+   mode: 0644
+
+- name: copie du hosts
+  copy:
+   src: /etc/ansible/roles/debianad/files/hosts
+   dest: /etc/
+   owner: root
+   group: root
+   mode: 0644
+
+
+- name: copie du resolv
+  copy:
+   src: /etc/ansible/roles/debianad/files/resolv.conf
+   dest: /etc/
+   owner: root
+   group: root
+   mode: 0644
+
+
