@@ -1,0 +1,50 @@
+---
+    - name: copie de krb5
+      copy: 
+       src: /etc/ansible/files/krb5.conf
+       dest: /etc/
+       owner: root
+       group: root
+       mode: 0644
+
+
+    - name: copie de nsswitch
+      copy:
+       src: /etc/ansible/files/nsswitch.conf
+       dest: /etc/
+       owner: root
+       group: root
+       mode: 0644
+
+    - name: creation des repertoires filer
+      file:
+       path: /home/partage
+       state: directory
+       owner: root
+       group: users
+       mode: '0777'
+
+    - name: home file
+      file:
+       path: /home/MYWORLDCOMPANY
+       state: directory
+       owner: root
+       group: users
+       mode: '0777'
+
+
+    - name: creation du ticket kerberos
+      expect:
+        command: kinit administrateur
+        responses:
+         (?i)password: "{{ password_dc }}"
+      no_log: False 
+
+
+    - name: Ajout du serveur au DC
+      expect:
+        command: net join -U administrateur
+        responses:
+          password: "{{ password_dc }}" 
+
+
