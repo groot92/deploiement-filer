@@ -1,5 +1,12 @@
 ---
 
+#    - name: copie de smb.conf
+#      copy:
+#       src: /etc/ansible/files/smb.conf
+#       dest: /etc/samba/
+#       owner: root
+#       group: root
+#       mode: 0644
 
     - name: copie de krb5
       copy: 
@@ -49,4 +56,12 @@
         responses:
           password: "{{ password_dc }}" 
 
+
+
+    - name: Creation des Homes
+      users_ad:
+        ad_name: automate
+        ad_password: Password.
+        ad_dc_name: MYWORLDCOMPANY
+        ad_serveur_ip: 10.0.1.2
 
