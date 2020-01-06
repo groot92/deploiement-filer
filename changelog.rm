@@ -10,3 +10,6 @@ Creation du role pour l'installation sur debian
 creation du role commun
 creation du role de reboot des services
 voir pb: lire la liste des users dans l'AD
+
+**06/01/2020**
+fix du pb avec kinit
