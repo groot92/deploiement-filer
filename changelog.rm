@@ -4,3 +4,6 @@ prise en charge des exeptions: serveur offline, pb d'autentification
 
 **04/01/2020**
 modification du playbook, pour la prise en compte du create user
+
+**06/01/20220**
+Creation du role pour la prise en charge de centOs
