@@ -1,0 +1,21 @@
+---
+  - name: Configuration pour l'AD   
+    hosts: FILER
+    remote_user: root
+    vars_prompt:
+     - name: "password_dc"
+       prompt: " Entrer le mot de passe du DC"
+       private: yes
+
+
+       
+
+
+    roles:
+     - role: debianad
+       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+     - role: communad
+     - role: servicead
+
+
+    
