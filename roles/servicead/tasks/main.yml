@@ -1,4 +1,19 @@
 ---
+
+- name: reboot des services pour centOS
+  systemd:
+     name: "{{ item }}"
+     enabled: yes
+     state: restarted
+     daemon_reload: yes
+  with_items:
+     - smb
+     - nmb
+     - winbind
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Entreprise Linux'
+
+
+
 - name: reboot service pour Debian
   systemd:
     name: "{{ item }}"

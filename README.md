@@ -41,4 +41,13 @@ L'installation est terminé
 |  inventaire | Liste les adresses ip de hosts Ansible  |
 
 
+***playbook_ad* :**
+
+| Variable  |Commantaires   |
+| ------------ | ------------ |
+| Password_dc  | Mot de passe du compte a privilège sur le DC  |
+|   |   |
+
+
+
 
