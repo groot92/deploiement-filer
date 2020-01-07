@@ -7,7 +7,6 @@
        prompt: " Entrer le mot de passe du DC"
        private: yes
 
-
       
     roles:
      - role: centosad
@@ -16,4 +15,5 @@
        when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
      - role: communad
      - role: servicead
+       
 
