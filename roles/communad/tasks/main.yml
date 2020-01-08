@@ -1,21 +1,21 @@
 ---
+    - template:
+       src: /etc/ansible/templates/hosts.j2
+       dest: /etc/hosts
 
-#    - name: copie de smb.conf
-#      copy:
-#       src: /etc/ansible/files/smb.conf
-#       dest: /etc/samba/
-#       owner: root
-#       group: root
-#       mode: 0644
+    - template:
+       src: /etc/ansible/templates/resolv.j2
+       dest: /etc/resolv.conf
 
-    - name: copie de krb5
-      copy: 
-       src: /etc/ansible/files/krb5.conf
-       dest: /etc/
-       owner: root
-       group: root
-       mode: 0644
+    - template:
+       src: /etc/ansible/templates/smb.j2
+       dest: /etc/samba/smb.conf
 
+
+    - template:
+       src: /etc/ansible/templates/krb5.j2
+       dest: /etc/krb5.conf
+   
 
     - name: copie de nsswitch
       copy:
@@ -60,8 +60,8 @@
 
     - name: Creation des Homes
       users_ad:
-        ad_name: automate
-        ad_password: Password.
-        ad_dc_name: MYWORLDCOMPANY
-        ad_serveur_ip: 10.0.1.2
+        ad_name: administrateur
+        ad_password: "{{ password_dc }}"
+        ad_dc_name: "{{ dc_name|upper }}"
+        ad_serveur_ip: "{{ dc_ip }}"
 
