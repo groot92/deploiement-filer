@@ -19,3 +19,7 @@ fix du pb avec kinit
 
 **06/01/2020**
 creation d'un module pour la creation des homes
+
+**08/01/2020**
+ajout d'un test de presence du repertoire avant la creation
+Variabilisation du module
