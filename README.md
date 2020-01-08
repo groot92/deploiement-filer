@@ -29,7 +29,7 @@ L'installation est terminé
 
 
 # Variables
-***Script pub_key.py :***
+***Script: pub_key.py :***
 
 | Variables  | Commantaires   |
 | ------------ | ------------ |
@@ -45,9 +45,19 @@ L'installation est terminé
 
 | Variable  |Commantaires   |
 | ------------ | ------------ |
-| Password_dc  | Mot de passe du compte a privilège sur le DC  |
+| ad_name  | compte a privilège sur le DC "administrateur"  |
 |   |   |
 
+***Module: user_ad.py* :**
 
-
-
+| Variable  |Commantaires   |
+| ------------ | ------------ |
+| Password_dc  | Mot de passe du compte a privilège sur le DC  |
+|ad_password | Mot de passe du compte a privilège|
+| ad_dc_name| nom du comtroleur de domaine|
+|ad_serveur_ip | addresse IP du DC |
+|users_path | chemin des Homes |
+| server | information sur le DC |
+| conn | Chaine de connexion au DC |
+| user_list | login des utilisateurs |
+|   |   |
