@@ -21,52 +21,13 @@
   yum:
     pkg: python-pip
     state: present
-
-    
+  
 
 - name: installlation de pexpect
   pip:
     name:
         - pexpect
         - ldap3
-
-
-
-
-
-
-- name: copie du hostname
-  copy:
-   src: /etc/ansible/roles/centosad/files/hostname
-   dest: /etc/
-   owner: root
-   group: root
-   mode: 0644
-
-- name: copie du hosts
-  copy:
-   src: /etc/ansible/roles/centosad/files/hosts
-   dest: /etc/
-   owner: root
-   group: root
-   mode: 0644
-
-- name: copie du resolv
-  copy:
-   src: /etc/ansible/roles/centosad/files/resolv.conf
-   dest: /etc/
-   owner: root
-   group: root
-   mode: 0644
-
-
-- name: copie du smb
-  copy:
-   src: /etc/ansible/roles/centosad/files/smb.conf
-   dest: /etc/samba/
-   owner: root
-   group: root
-   mode: 0644
 
 
 - name: modification du groupmap
@@ -78,4 +39,3 @@
 - name: modification de ulimit
   shell:
      cmd: ulimit -n 16384
-
