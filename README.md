@@ -14,6 +14,7 @@ Playbooks Ansible
 	- reboot des services samba
 
 # Utilisation
+## Workgroup
 Saisir la ligne suivante dans un terminal.
 ```console
 $ ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbook.yml
@@ -22,11 +23,21 @@ $ ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbook.yml
 
 Saisir le mot de passe "root" des serveurs.
 
-L'installation est terminé
+L'installation est terminée
 ![image](https://drive.google.com/uc?export=view&id=17UP8F71K0V68pARHUWs1PQkv9yjDLExf)
 
+### Active Directory
+L' étape précédente doit imperativement etre faire avant l'integration à l'active directory.
 
+Saisir dans un terminal :
+```console
+$ ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbook_ad.yml
+```
+![image](https://drive.google.com/uc?export=view&id=18rTBbPdMNAVEM_VXoUB6uyMmKaG7xKAe)
+Saisir le mot de passe du compte a privilège sur le DC.
 
+L'installation est terminée
+![image](https://drive.google.com/uc?export=view&id=1JUX5q2Jxkp9eptS0d8axwSnHUdDwryT3)
 
 # Variables
 ***Script: pub_key.py :***
@@ -45,8 +56,14 @@ L'installation est terminé
 
 | Variable  |Commantaires   |
 | ------------ | ------------ |
-| ad_name  | compte a privilège sur le DC "administrateur"  |
-|   |   |
+| password_dc  | Mot de passe du compte "administrateur" sur le DC  |
+|user |Valeur "automate"|
+|remote_host| lecture du host sur le serveur|
+|remote_ip| @IP du serveur|
+|dc-name| valeur "myworldcompany"
+|ex_name| valeur "net"|
+|dc_ip| @IP du DC|
+|user_ad| Nom du module ansible pour la création des homes directory|
 
 ***Module: user_ad.py* :**
 
