@@ -1,18 +1,36 @@
 # déploiement-filer
 Le projet permet l’installation de serveurs de fichier sous CentOS ou Red Hat.
 
-Dépendance
+**Dépendances:**
 Serveur linux famille (Centos ou Red Hat)
 La configuration réseau faite
 Avoir un mot de passe root identique
 
-Playbooks Ansible
-- playbook deploiement des serveurs en workgroup
+**Playbooks Ansible:**
+- playbook deploiement des serveurs en workgroup :**playbook.yml**
 	- Installation des packages suivant la distribution
 	- copie des fichiers de configuration
 	- création du répertoire de partage
 	- reboot des services samba
+	
+- Playbook de configuration dans l'active directory :**playbook_ad.yml**
+	- Installation des packages necessaire a l'AD suivant la distribution
+	- Copie des fichiers de configuration
+	- Ajout du serveur dans le domaine
+	- creation des Home user via un module ansible
+	
+**Module Ansible: **
+users_ad (Nom du module)
+*arguments*:
+ad_name (Nom du compte a privilège sur l'active directory)
+ad_password (Mot de passe du compte)
+ad_dc_name (Nom du controleur de domaine)
+ad_serveur_ip (adresse IP du DC)
 
+**Script Python:**
+pub_key.py
+
+Permet le deploiement de la cle publique ssh sur les serveurs.
 # Utilisation
 ## Workgroup
 Saisir la ligne suivante dans un terminal.
@@ -65,7 +83,7 @@ L'installation est terminée
 |dc_ip| @IP du DC|
 |user_ad| Nom du module ansible pour la création des homes directory|
 
-***Module: user_ad.py* :**
+***Module: users_ad.py* :**
 
 | Variable  |Commantaires   |
 | ------------ | ------------ |
@@ -77,4 +95,4 @@ L'installation est terminée
 | server | information sur le DC |
 | conn | Chaine de connexion au DC |
 | user_list | login des utilisateurs |
-|   |   |
+
