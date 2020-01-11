@@ -1,0 +1,39 @@
+
+[libdefaults]
+        ticket_lifetime = 24h
+	default_realm = {{ dc_name|upper }}.{{ ex_name|upper }}
+	dns_lookup_realm = false
+        dns_lookup_kdc = false
+        forwardable = yes
+
+[realms]
+	{{ dc_name|upper }}.{{ ex_name|upper }} = {
+		kdc = {{ dc_ip }}
+                admin_server = {{ dc_ip }}
+		default_domain = {{ dc_name|upper }}.{{ ex_name|upper }}
+	}
+
+
+[domain_realm]
+
+	.{{ dc_name|lower }}.{{ ex_name|lower }} = {{ dc_name|upper }}.{{ ex_name|upper }}
+	{{ dc_name|lower }}.{{ ex_name|lower }} = {{ dc_name|upper }}.{{ ex_name|upper }}
+	
+
+[kdc]
+        profile = /etc/krb5kdc/kdc.conf
+
+
+[logging]
+        kdc = FILE:/var/log/krb5kdc.log
+        admin_server = FILE:/var/log/kadmin.log
+        default = FILE:/var/log/krb5lib.logog
+
+[appdefaults]
+pam = {
+debug =false
+ticket_lifetime = 3600
+renew_lifetime = 3600
+forwardable = true
+krb4_convert = false
+}
