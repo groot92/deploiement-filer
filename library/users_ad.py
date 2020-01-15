@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 DOCUMENTATION='''
-module: user_ad
+module: users_ad
 description: Module qui permet d'extraire le login d'AD
  
 options:
@@ -13,8 +13,12 @@ options:
 	description: password de l'utilisateur
 	required: yes
 	
-  ad_serveur:
-	description: nom du serveur AD
+  ad_name:
+	description: nom du DC
+	required: yes
+	
+  ad_serveur_ip:
+	description: adresse IP du serveur AD
 	required: yes	
 
 '''
@@ -67,7 +71,7 @@ def main():
                desc = e.description
 
 
-
+######### RECUPERATION DE L'ATTRIBUT 'sAMAccountName' et creation du repertoire si il n'existe pas
             except LDAPCursorError:
                 desc = ""
                 user_list = str(e['sAMAccountName'])
