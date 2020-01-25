@@ -19,13 +19,13 @@ Avoir un mot de passe root identique
 	- Ajout du serveur dans le domaine
 	- creation des Home user via un module ansible
 	
-**Module Ansible: **
-users_ad (Nom du module)
-*arguments*:
-ad_name (Nom du compte a privilège sur l'active directory)
-ad_password (Mot de passe du compte)
-ad_dc_name (Nom du controleur de domaine)
-ad_serveur_ip (adresse IP du DC)
+**Module Ansible:**
+- nom du module: **users_ad**
+	- *arguments*:
+	- ad_name (Nom du compte a privilège sur l'active directory)
+	- ad_password (Mot de passe du compte)
+	- ad_dc_name (Nom du controleur de domaine)
+	- ad_serveur_ip (adresse IP du DC)
 
 **Script Python:**
 pub_key.py
